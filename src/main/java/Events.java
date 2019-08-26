@@ -19,7 +19,4 @@ public class Events extends Task {
     public String getStatusIcon() {
         return "[E]" + "[" + super.getStatusIcon() + "]" + getDescription() + " (at: " + dateAndTime +")";
     }
-    //public String printOut() {
-      //  return "[E]" + "[" + getStatusIcon() + "]" + description + " (by: " + dateAndTime +")";
-    //}
 }

@@ -187,46 +187,72 @@ public class Duke {
 
 
         Scanner input = new Scanner(System.in);
-        String value = input.nextLine();
-
+        String value; //= input.nextLine();
+        ArrayList<Task> task = new ArrayList<Task>();
 
         //level1(value);
         //level2(value);
         //level3(value);
         //level3WithUseOfClass(value);
-        level4(value);
+        //level4(value);
+        while(true) {
+            value = input.nextLine();
+            String[] temp = value.split(" ", 2);
+            if (temp[0].equals("todo")) {
+                DukeException dukeEx = new DukeException(value);
+                dukeEx.checkIfKeyword(value);
+                //CONTINUE HERE
+                if(dukeEx.getHasError()) {
+                    continue;
+                }
+                Todo tempTask = new Todo(temp[1]);
+                System.out.println("Got it. I've added this task:");
+                task.add(tempTask);
+                System.out.println(tempTask.getStatusIcon()+ "\n" + "Now you have " + task.size() + " task in the list");
+            }
+            else if (temp[0].equals("deadline")) {
+                String[] temp1 = temp[1].split("/", 2);
+                String[] temp2 = temp1[1].split(" ", 2);
+                Deadline tempTask = new Deadline(temp1[0], temp2[1]);
+                System.out.println("Got it. I've added this task:");
+                task.add(tempTask);
+                System.out.println(tempTask.getStatusIcon()+ "\n" +
+                        "Now you have " + task.size() + " task in the list");
+            }
+            else if (temp[0].equals("event")) {
+                String[] temp1 = temp[1].split("/", 2);
+                String[] temp2 = temp1[1].split(" ", 2);
+                Events tempTask = new Events(temp1[0], temp2[1]);
+                System.out.println("Got it. I've added this task:");
+                task.add(tempTask);
+                System.out.println(tempTask.getStatusIcon() + "\n" +
+                        "Now you have " + task.size() + " task in the list");
+            }
+            else if (temp[0].equals("done")) {
+                int index = Integer.parseInt(temp[1]) - 1;
+                //update status
+                task.get(index).TaskDone();
+                System.out.println("Nice! I've marked this task as done: ");
+                // PRINT OUT THE DONE TASK : System.out.println("[" + )
+                System.out.println("[" + task.get(index).getStatusIcon() + "]" + task.get(index).getDescription());
+            }
+            else if (value.equals("bye")) {
+                System.out.println("Bye. Hope to see you again soon!");
+                break;
+            }
+            else if (value.equals("list")) {
+                //print out the list
+                System.out.println("Here are the tasks in your list:");
+                for (int i = 0; i < task.size(); i ++) {
+                    System.out.println((i+1) + task.get(i).getStatusIcon());//+ task.get(i).getDescription());
+                }
+            }
+            else {
+                Task tempTask = new Task(value);
+                task.add(tempTask);
+                System.out.println("added: " + value);
+            }
+            System.out.println("Im dumb");
+        }
     }
 }
-
-
-
-
-/*
-METHOD 2 (use of array instead of ArrayList) for level 2
-        Scanner input = new Scanner(System.in);
-
-        boolean toContinue = true;
-
-        int i = 0;
-        String[] myArray = new String[100];
-
-        while (toContinue) {
-            String myString = input.next();
-            if (myString.equals("list")) {
-                for (int a = 0; a < i; a++) {
-                    System.out.println(a+1 + ". " + myArray[a]);
-                }
-            } else if (myString.equals("bye")) {
-                System.out.println("Bye. Hope to see you again soon!\n");
-                toContinue = false;
-                break;
-            } else {// myString != "bye" or "list"
-                System.out.println("added: " + myString);
-                myArray[i] = myString;
-                i += 1;
-            }
-        }
-
-*/
-
-

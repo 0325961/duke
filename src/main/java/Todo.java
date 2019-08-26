@@ -8,8 +8,4 @@ public class Todo extends Task {
     public String getStatusIcon() {
         return "[T]" + "[" + super.getStatusIcon()+ "]" + description;
     }
-
-    //public String printOut() {
-      //  return "[T]" + "[" + getStatusIcon() + "]" + description;
-    //}
 }
