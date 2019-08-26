@@ -118,6 +118,64 @@ public class Duke {
         }
     }
 
+    public static void level4(String userInput) {
+        ArrayList<Task> task = new ArrayList<Task>();
+        Scanner input = new Scanner(System.in);
+
+        while(true) {
+            String[] temp = userInput.split(" ", 2);
+            if (temp[0].equals("todo")) {
+                Todo tempTask = new Todo(temp[1]);
+                System.out.println("Got it. I've added this task:");
+                task.add(tempTask);
+                System.out.println(tempTask.getStatusIcon()+ "\n" + "Now you have " + task.size() + " task in the list");
+            }
+            else if (temp[0].equals("deadline")) {
+                String[] temp1 = temp[1].split("/", 2);
+                String[] temp2 = temp1[1].split(" ", 2);
+                Deadline tempTask = new Deadline(temp1[0], temp2[1]);
+                System.out.println("Got it. I've added this task:");
+                task.add(tempTask);
+                System.out.println(tempTask.getStatusIcon()+ "\n" +
+                        "Now you have " + task.size() + " task in the list");
+            }
+            else if (temp[0].equals("event")) {
+                String[] temp1 = temp[1].split("/", 2);
+                String[] temp2 = temp1[1].split(" ", 2);
+                Events tempTask = new Events(temp1[0], temp2[1]);
+                System.out.println("Got it. I've added this task:");
+                task.add(tempTask);
+                System.out.println(tempTask.getStatusIcon() + "\n" +
+                        "Now you have " + task.size() + " task in the list");
+            }
+            else if (temp[0].equals("done")) {
+                int index = Integer.parseInt(temp[1]) - 1;
+                //update status
+                task.get(index).TaskDone();
+                System.out.println("Nice! I've marked this task as done: ");
+                // PRINT OUT THE DONE TASK : System.out.println("[" + )
+                System.out.println("[" + task.get(index).getStatusIcon() + "]" + task.get(index).getDescription());
+            }
+            else if (userInput.equals("bye")) {
+                System.out.println("Bye. Hope to see you again soon!");
+                break;
+            }
+            else if (userInput.equals("list")) {
+                //print out the list
+                System.out.println("Here are the tasks in your list:");
+                for (int i = 0; i < task.size(); i ++) {
+                    System.out.println((i+1) + task.get(i).getStatusIcon());//+ task.get(i).getDescription());
+                }
+            }
+            else {
+                Task tempTask = new Task(userInput);
+                task.add(tempTask);
+                System.out.println("added: " + userInput);
+            }
+            userInput = input.nextLine();
+        }
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -131,10 +189,12 @@ public class Duke {
         Scanner input = new Scanner(System.in);
         String value = input.nextLine();
 
+
         //level1(value);
         //level2(value);
         //level3(value);
-        level3WithUseOfClass(value);
+        //level3WithUseOfClass(value);
+        level4(value);
     }
 }
 
