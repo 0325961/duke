@@ -154,7 +154,7 @@ public class Duke {
                 task.get(index).TaskDone();
                 System.out.println("Nice! I've marked this task as done: ");
                 // PRINT OUT THE DONE TASK : System.out.println("[" + )
-                System.out.println("[" + task.get(index).getStatusIcon() + "]" + task.get(index).getDescription());
+                System.out.println(task.get(index).getStatusIcon());
             }
             else if (userInput.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
@@ -164,7 +164,7 @@ public class Duke {
                 //print out the list
                 System.out.println("Here are the tasks in your list:");
                 for (int i = 0; i < task.size(); i ++) {
-                    System.out.println((i+1) + task.get(i).getStatusIcon());//+ task.get(i).getDescription());
+                    System.out.println((i+1) + task.get(i).getStatusIcon());
                 }
             }
             else {
@@ -176,25 +176,10 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("Hello! I'm Duke\n" + "What can I do for you?");
-
-
-        Scanner input = new Scanner(System.in);
-        String value; //= input.nextLine();
+    public static void level5() {
         ArrayList<Task> task = new ArrayList<Task>();
-
-        //level1(value);
-        //level2(value);
-        //level3(value);
-        //level3WithUseOfClass(value);
-        //level4(value);
+        Scanner input = new Scanner(System.in);
+        String value;
         while(true) {
             value = input.nextLine();
             String[] temp = value.split(" ", 2);
@@ -252,7 +237,30 @@ public class Duke {
                 task.add(tempTask);
                 System.out.println("added: " + value);
             }
-            System.out.println("Im dumb");
         }
+    }
+
+    public static void main(String[] args) {
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+        System.out.println("Hello from\n" + logo);
+        System.out.println("Hello! I'm Duke\n" + "What can I do for you?");
+
+
+        Scanner input = new Scanner(System.in);
+        String value; //= input.nextLine();
+        ArrayList<Task> task = new ArrayList<Task>();
+
+        //level1(value);
+        //level2(value);
+        //level3(value);
+        //level3WithUseOfClass(value);
+        //level4(value);
+        level5();
+
+
     }
 }
