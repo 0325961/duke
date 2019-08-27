@@ -3,28 +3,41 @@ import java.util.Scanner;
 
 public class Duke {
 
-    public static void level2(String userInput) {
+    public static void level3(String userInput) {
+        ArrayList<Task> arrList = new ArrayList<Task>();
         Scanner input = new Scanner(System.in);
-        ArrayList<String> myList = new ArrayList<String>(0);
-        int i = 0;
-        myList.add(userInput);
-        System.out.println("added: " + userInput);
 
-        while (!userInput.equals("bye")) {
-            userInput = input.nextLine();
-            if (!userInput.equals("list")) {
-                System.out.println("added: " + userInput);
-                i += 1;
-                myList.add(userInput);
+        while(true) {
+            String[] splitted = userInput.split(" ", 2);
+
+            if (splitted[0].equals("done")) {
+                int index = Integer.parseInt(splitted[1]) - 1;
+                //update status
+                arrList.get(index).TaskDone();
+                System.out.println("Nice! I've marked this task as done: ");
+                // PRINT OUT THE DONE TASK : System.out.println("[" + )
+                System.out.println("[" + arrList.get(index).getStatusIcon() + "]" + arrList.get(index).getDescription());
             }
-            else {
-                for (int a = 0; a < myList.size(); a++) {
-                    System.out.println((a+1) + "." + myList.get(a));
+            else if (userInput.equals("bye")) {
+                System.out.println("Bye. Hope to see you again soon!");
+                break;
+            }
+            else if (userInput.equals("list")) {
+                //print out the list
+                System.out.println("Here are the tasks in your list:");
+                for (int i = 0; i < arrList.size(); i ++) {
+                    System.out.println((i+1) + ".[" + arrList.get(i).getStatusIcon() + "]" + arrList.get(i).getDescription());
                 }
             }
+            else {
+                Task tempTask = new Task(userInput);
+                arrList.add(tempTask);
+                System.out.println("added: " + userInput);
+            }
+            userInput = input.nextLine();
         }
-        System.out.println("Bye. Hope to see you again soon!");
     }
+
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -37,6 +50,6 @@ public class Duke {
 
         Scanner input = new Scanner(System.in);
         String value = input.nextLine();
-        level2(value);
+        level3(value);
     }
 }
