@@ -1,20 +1,29 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
 
-    public static void level1(String userInput) {
+    public static void level2(String userInput) {
         Scanner input = new Scanner(System.in);
-        while (true) {
-            if (userInput.equals("bye")) {
-                System.out.println("Bye. Hope to see you soon.");
-                break;
-            }
-            else
-            {
-                System.out.println(userInput);
-            }
+        ArrayList<String> myList = new ArrayList<String>(0);
+        int i = 0;
+        myList.add(userInput);
+        System.out.println("added: " + userInput);
+
+        while (!userInput.equals("bye")) {
             userInput = input.nextLine();
+            if (!userInput.equals("list")) {
+                System.out.println("added: " + userInput);
+                i += 1;
+                myList.add(userInput);
+            }
+            else {
+                for (int a = 0; a < myList.size(); a++) {
+                    System.out.println((a+1) + "." + myList.get(a));
+                }
+            }
         }
+        System.out.println("Bye. Hope to see you again soon!");
     }
 
     public static void main(String[] args) {
@@ -26,19 +35,8 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         System.out.println("Hello! I'm Duke\n" + "What can I do for you?");
 
-
         Scanner input = new Scanner(System.in);
         String value = input.nextLine();
-        level1(value);
+        level2(value);
     }
 }
-
-
-
-
-//level1(value);
-//level2(value);
-//level3(value);
-//level3WithUseOfClass(value);
-//level4(value);
-//level5();
