@@ -44,7 +44,7 @@ public class Duke {
                         try {
                             userInput = value.replaceFirst("todo", "");
                             if (userInput.length() == 0) {
-                                throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty\n" +
+                                throw new DukeException("\u2936 OOPS!!! The description of a todo cannot be empty\n" +
                                         "Please enter another todo with description!");
                             }
                             Todo todo = new Todo(userInput);
@@ -56,11 +56,28 @@ public class Duke {
                         } catch (DukeException e) {
                             System.out.println(e.getMessage());
                         }
+                    } else if (value.startsWith("find"))  {
+                        try {
+                            userInput = value.replace("find", "");
+                            if (userInput.length() == 0) {
+                                throw new DukeException(("\u2639 OOPS!!! The description of a find cannot be empty\n" +
+                                        "Please enter another find with description"));
+                            }
+                            int num = 1;
+                            System.out.println("Here are the matching tasks in your list:");
+                            for (int i = 0; i < arrList.size(); i++) {
+                                if (arrList.get(i).getDescription().contains(userInput)) {
+                                    System.out.println(num + "." + arrList.get(i).getStatusIcon());
+                                }
+                            }
+                        } catch (DukeException e) {
+                            System.out.println(e.getMessage());
+                        }
                     } else if (value.startsWith("deadline")) {
                         try {
                             userInput = value.replaceFirst("deadline", "");
                             if (userInput.length() == 0) {
-                                throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.\n" +
+                                throw new DukeException("\u2639 + OOPS!!! The description of a deadline cannot be empty.\n" +
                                         "Please enter another deadline with description");
                             }
                             temp = userInput.split("/", 2);
@@ -78,7 +95,7 @@ public class Duke {
                         try {
                             userInput = value.replaceFirst("event", "");
                             if (userInput.length() == 0) {
-                                throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.\n" +
+                                throw new DukeException("\u2639 OOPS!!! The description of a event cannot be empty.\n" +
                                         "Please enter another event with description");
                             }
                             temp = userInput.split("/", 2);
@@ -93,7 +110,7 @@ public class Duke {
                             System.out.println(e.getMessage());
                         }
                     } else if (value.startsWith("list")) {
-                        System.out.println("Here are the tasks in your list");
+                        System.out.println("Here are the tasks in your list:");
                         for (int i = 0; i < arrList.size(); i++) {
                             System.out.println((i + 1) + "." + arrList.get(i).getStatusIcon());
                         }
@@ -112,7 +129,7 @@ public class Duke {
                             }
                         }
                     } else {
-                        throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                        throw new DukeException("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-(");
                     }
                 } catch (DukeException e) {
                     System.out.println(e.getMessage());
