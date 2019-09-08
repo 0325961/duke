@@ -32,6 +32,12 @@ public class Parser {
                 } else if (value.startsWith("bye")) {
                     ui.sayBye();
                     toContinue = false;
+                } else if (value.startsWith("delete"))  {
+                        userInput = value.replaceFirst("delete", "");
+                        userInput = userInput.replaceAll(" ", "");
+                        int index = Integer.parseInt(userInput);
+                        ui.deletedMessage(list.getTask().get(index-1).getStatusIcon(), (list.getTask().size())-1);
+                        list.removeTask(index-1);
                 } else if (value.startsWith("find")) {
                     try {
                         userInput = value.replace("find", "");
