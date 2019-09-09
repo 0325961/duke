@@ -1,15 +1,39 @@
 //A-MoorOOP
 
+import jdk.dynalink.linker.support.SimpleLinkRequest;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * Parser class that deals with making sense of the user's input.
+ */
 public class Parser {
 
     private Ui ui;
     private TaskList list;
 
+    /**
+     * Constructor to initialize Ui class(temp1) and TaskList class(temp2).
+     *
+     * @param temp1 Ui class.
+     * @param temp2 TaskList class.
+     */
     public Parser(Ui temp1, TaskList temp2) {
         this.ui = temp1;
         this.list = temp2;
     }
 
+    /**
+     * This method of parse will run the program base on the user's command (ie add to
+     * list when it is deadline, events... while done will mark the task as done and
+     * delete will remove the task from the list.
+     *
+     * @param value the user's input.
+     * @throws DukeException If user's input does not have description and when the
+     * user enter invaild inputs.
+     */
     public void parse(String value) throws DukeException {
         String userInput;
         String[] temp, temp1;
@@ -67,12 +91,18 @@ public class Parser {
                         }
                         temp = userInput.split("/", 2);
                         temp1 = temp[1].split(" ", 2);
-                        Deadline deadline = new Deadline(temp[0], temp1[1]);
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HHmm");
+                        Date date = formatter.parse(temp1[1].trim());
+                        SimpleDateFormat newFormatter = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+                        String dateinString = newFormatter.format(date);
+                        Deadline deadline = new Deadline(temp[0], dateinString);
                         list.addTask(deadline);
                         ui.addTaskMessage(deadline.getStatusIcon(), list.getTask().size());
                         //file.write("D | 0 | " + temp[0] + " | " + temp1[1] + "\n");
                     } catch (DukeException e) {
                         System.out.println(e.getMessage());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
                     }
                 } else if (value.startsWith("event")) {
                     try {
@@ -83,12 +113,20 @@ public class Parser {
                         }
                         temp = userInput.split("/", 2);
                         temp1 = temp[1].split(" ", 2);
-                        Events events = new Events(temp[0], temp1[1]);
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/YYYY HHmm");
+                        Date date = formatter.parse(temp1[1].trim());
+                        SimpleDateFormat newFormatter = new SimpleDateFormat("F MMMM YYYY hh:mma");
+                        String dateinString = newFormatter.format(date);
+                        Events events = new Events(temp[0], dateinString);
                         list.addTask(events);
                         ui.addTaskMessage(events.getStatusIcon(), list.getTask().size());
                         //file.write("E | 0 | " + temp[0] + " | " + temp1[1] + "\n");
                     } catch (DukeException e) {
                         System.out.println(e.getMessage());
+                    } catch (ParseException e) {
+                      throw new DukeException("OOPS! Please enter the event as shown below:\n" +
+                              "event eventName /at dd/MM/yyyy HHmm\n" +
+                              "For example: event programs /at 01/02/2019 1600");
                     }
                 } else if (value.startsWith("list")) {
                     System.out.println("Here are the tasks in your list:");

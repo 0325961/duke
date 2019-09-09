@@ -4,6 +4,11 @@ import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * A program that will help to manage tasks entered by users
+ * such as adding, deleting, displaying and marking the task
+ * as complete.
+ */
 public class Duke {
     //private Storage storage;
     private TaskList tasks;
