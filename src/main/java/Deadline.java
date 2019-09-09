@@ -1,4 +1,5 @@
 //A-Inheritance
+//A-JavaDoc
 
 /**
  * Deadline class that extends from Task Class. Contains the date and time

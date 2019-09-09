@@ -1,5 +1,6 @@
 //A-MoorOOP
 // deals with interactions with the user
+//A-JavaDoc
 
 import java.util.Scanner;
 
