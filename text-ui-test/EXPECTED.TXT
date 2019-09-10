@@ -10,4 +10,4 @@ What can I do for you?
 deadline return book /by Tues
 Got it. I've added this task: 
 [D][✘] return book  (by: Tues)
-Now you have 2 tasks in your list.
+Now you have 1 tasks in your list.
