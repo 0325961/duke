@@ -12,15 +12,13 @@ import java.io.IOException;
  * as complete.
  */
 public class Duke {
-    //private Storage storage;
-    private TaskList tasks;
-    private Ui ui;
 
-    static ArrayList<Task> arrList = new ArrayList<Task>(); //A-Collections
+    private static ArrayList<Task> arrList = new ArrayList<>(); //A-Collections
 
-    public Duke() {
-        ui = new Ui();
-        tasks = new TaskList(arrList);
+    private Duke() {
+        Ui ui = new Ui();
+        //private Storage storage;
+        TaskList tasks = new TaskList(arrList);
         ui.welcomeMessage();
         ui.sayHello();
         //String userInput = ui.askForInput();

@@ -7,10 +7,6 @@ Hello from
 
 Hello! I'm Duke
 What can I do for you?
-todo readbook
-Got it. I've added this task: 
-[T][✘] readbook
-Now you have 1 tasks in your list.
 deadline return book /by Tues
 Got it. I've added this task: 
 [D][✘] return book  (by: Tues)
