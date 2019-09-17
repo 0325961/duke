@@ -15,7 +15,7 @@ public class Duke {
 
     private static ArrayList<Task> arrList = new ArrayList<>(); //A-Collections
 
-    private Duke() {
+    Duke() {
         Ui ui = new Ui();
         //private Storage storage;
         TaskList tasks = new TaskList(arrList);

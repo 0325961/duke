@@ -11,7 +11,7 @@ public class Deadline extends Task {
     protected String symbol;
 
     /**
-     * Constructor that initializes description and by which is the date and time.
+     * Constructor to initialize description and by.
      *
      * @param description which is a String that user inputs.
      * @param by which is a String that contains the date and time.
